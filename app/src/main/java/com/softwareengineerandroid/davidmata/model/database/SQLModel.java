@@ -1,4 +1,4 @@
-package com.softwareengineerandroid.davidmata.model;
+package com.softwareengineerandroid.davidmata.model.database;
 
 /**
  * Created by davidmata on 15/10/2016.
@@ -11,7 +11,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import com.softwareengineerandroid.davidmata.doctorsconferences.Conference;
+import com.softwareengineerandroid.davidmata.model.conference.Conference;
 import com.softwareengineerandroid.davidmata.global.GlobalData;
 
 import java.util.ArrayList;

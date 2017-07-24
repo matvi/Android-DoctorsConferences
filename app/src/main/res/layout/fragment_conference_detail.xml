@@ -6,7 +6,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="75dp"
-    tools:context="com.softwareengineerandroid.davidmata.doctorsconferences.ConferenceDetailFragment">
+    tools:context="com.softwareengineerandroid.davidmata.controller.doctorsconferences.ConferenceDetailFragment">
 
 
     <TextView

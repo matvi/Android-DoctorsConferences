@@ -3,7 +3,7 @@
 
         xmlns:tools="http://schemas.android.com/tools"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        tools:context="com.softwareengineerandroid.davidmata.doctorsconferences.MainActivity">
+        tools:context="com.softwareengineerandroid.davidmata.controller.doctorsconferences.MainActivity">
 
         <item
             android:id="@+id/action_sendInvitations"

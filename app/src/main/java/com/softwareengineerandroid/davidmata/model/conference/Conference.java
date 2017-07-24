@@ -1,4 +1,4 @@
-package com.softwareengineerandroid.davidmata.doctorsconferences;
+package com.softwareengineerandroid.davidmata.model.conference;
 
 /**
  * Created by davidmata on 15/10/2016.
@@ -19,14 +19,22 @@ public class Conference {
     private long timeInMilliseconds;
     private int id;
 
-    /**
+    /*
      *
      * @param importance NUMBER 1 TO 10 TO INDICATE HOW IMPORTAT IS THE CONFERENCE
      * @param conferenceTitle THE NAME OF THE CONFERENCE
      * @param conferenceBody CONFERENCE'S DETAILS
      * @param time THE DATE IN EPOCH & UNIX TIMESTAMP CONVERSION
      */
-    public Conference(int id, Double importance, String conferenceTitle, String conferenceBody, String location, long time){
+    public Conference(ConferenceBuilder conferenceBuilder){
+        this.id = conferenceBuilder.id;
+        this.importance = conferenceBuilder.importance;
+        this.title = conferenceBuilder.title;
+        this.timeInMilliseconds = conferenceBuilder.timeInMilliseconds;
+        this.body = conferenceBuilder.body;
+        this.location = conferenceBuilder.location;
+    }
+   /* public Conference(int id, Double importance, String conferenceTitle, String conferenceBody, String location, long time){
         this.id = id;
         this.importance =importance;
         this.title = conferenceTitle;
@@ -34,7 +42,7 @@ public class Conference {
         this.body = conferenceBody;
         this.location = location;
 
-    }
+    }*/
 
     public Double getImportance(){
         return this.importance;

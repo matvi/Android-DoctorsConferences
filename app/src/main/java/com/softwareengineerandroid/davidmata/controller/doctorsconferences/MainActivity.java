@@ -1,12 +1,10 @@
-package com.softwareengineerandroid.davidmata.doctorsconferences;
+package com.softwareengineerandroid.davidmata.controller.doctorsconferences;
 
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -24,9 +22,9 @@ import android.widget.Toast;
 
 import com.softwareengineerandroid.davidmata.global.GlobalData;
 import com.softwareengineerandroid.davidmata.global.Timeconversion;
-import com.softwareengineerandroid.davidmata.model.SQLModel;
-
-import java.util.ArrayList;
+import com.softwareengineerandroid.davidmata.model.conference.Conference;
+import com.softwareengineerandroid.davidmata.model.conference.ConferenceBuilder;
+import com.softwareengineerandroid.davidmata.model.database.SQLModel;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -130,7 +128,15 @@ public class MainActivity extends AppCompatActivity {
                             String date_str = year+"/"+month+"/"+day+" " + hh+":"+mm +":00"; // yyyy/MM/dd HH:mm:ss
                             long dateMilliseconds = new Timeconversion().timeConversion(date_str);
 
-                            Conference conference = new Conference(0,Double.parseDouble(imp),title_str,body_str,location_str,dateMilliseconds);
+                            //Conference conference = new Conference(0,Double.parseDouble(imp),title_str,body_str,location_str,dateMilliseconds);
+                             Conference conference = ConferenceBuilder.conference()
+                                     .id(0)
+                                     .importance(Double.parseDouble(imp))
+                                     .title(title_str)
+                                     .body(body_str)
+                                     .location(location_str)
+                                     .timeInMilliseconds(dateMilliseconds)
+                                     .build();
                             //Add to a database
                             sqlModel = new SQLModel(MainActivity.this);
                             sqlModel.open();

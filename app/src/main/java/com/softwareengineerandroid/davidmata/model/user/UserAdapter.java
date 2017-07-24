@@ -1,4 +1,4 @@
-package com.softwareengineerandroid.davidmata.user;
+package com.softwareengineerandroid.davidmata.model.user;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -8,9 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckedTextView;
-import android.widget.Toast;
 
-import com.softwareengineerandroid.davidmata.doctorsconferences.R;
+import com.softwareengineerandroid.davidmata.controller.doctorsconferences.R;
 
 import java.util.ArrayList;
 

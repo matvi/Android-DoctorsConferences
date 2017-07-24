@@ -1,4 +1,4 @@
-package com.softwareengineerandroid.davidmata.user;
+package com.softwareengineerandroid.davidmata.model.user;
 
 /**
  * Created by davidmata on 19/10/2016.

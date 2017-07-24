@@ -1,19 +1,17 @@
-package com.softwareengineerandroid.davidmata.user;
+package com.softwareengineerandroid.davidmata.model.user;
 
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.CheckedTextView;
 import android.widget.ListView;
-import android.widget.Toast;
 
-import com.softwareengineerandroid.davidmata.doctorsconferences.QueryUtils;
-import com.softwareengineerandroid.davidmata.doctorsconferences.R;
+import com.softwareengineerandroid.davidmata.global.QueryUtils;
+import com.softwareengineerandroid.davidmata.controller.doctorsconferences.R;
 
 import java.util.ArrayList;
 

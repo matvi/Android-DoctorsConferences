@@ -1,4 +1,4 @@
-package com.softwareengineerandroid.davidmata.doctorsconferences;
+package com.softwareengineerandroid.davidmata.controller.doctorsconferences;
 
 import org.junit.Test;
 

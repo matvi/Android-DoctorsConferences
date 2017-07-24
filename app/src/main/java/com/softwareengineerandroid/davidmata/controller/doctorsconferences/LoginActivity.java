@@ -1,4 +1,4 @@
-package com.softwareengineerandroid.davidmata.doctorsconferences;
+package com.softwareengineerandroid.davidmata.controller.doctorsconferences;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -34,7 +34,7 @@ import android.widget.TextView;
 
 import com.softwareengineerandroid.davidmata.global.DummieData;
 import com.softwareengineerandroid.davidmata.global.GlobalData;
-import com.softwareengineerandroid.davidmata.model.SQLModel;
+import com.softwareengineerandroid.davidmata.model.database.SQLModel;
 
 import java.util.ArrayList;
 import java.util.List;

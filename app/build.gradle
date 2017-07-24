@@ -4,7 +4,7 @@ android {
     compileSdkVersion 23
     buildToolsVersion "23.0.0"
     defaultConfig {
-        applicationId "com.softwareengineerandroid.davidmata.doctorsconferences"
+        applicationId "com.softwareengineerandroid.davidmata.controller.doctorsconferences"
         minSdkVersion 19
         targetSdkVersion 23
         versionCode 1

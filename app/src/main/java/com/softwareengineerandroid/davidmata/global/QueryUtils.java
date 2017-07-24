@@ -1,19 +1,15 @@
-package com.softwareengineerandroid.davidmata.doctorsconferences;
+package com.softwareengineerandroid.davidmata.global;
 
 /**
  * Created by davidmata on 15/10/2016.
  */
 
 import android.content.Context;
-import android.util.Log;
 
-import com.softwareengineerandroid.davidmata.global.GlobalData;
-import com.softwareengineerandroid.davidmata.model.SQLModel;
-import com.softwareengineerandroid.davidmata.user.User;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.softwareengineerandroid.davidmata.model.conference.Conference;
+import com.softwareengineerandroid.davidmata.model.conference.ConferenceBuilder;
+import com.softwareengineerandroid.davidmata.model.database.SQLModel;
+import com.softwareengineerandroid.davidmata.model.user.User;
 
 import java.util.ArrayList;
 
@@ -44,21 +40,32 @@ public final class QueryUtils {
 
     public static ArrayList<Conference> extractConferences2() {
         ArrayList<Conference> conferences = new ArrayList<>();
-        conferences.add(new Conference(0,7.0,"Emergency Medicine Research Course","This course is a 5 month course that will provide students with a thorough understanding of Evidence Based Medicine (EBM) and Research Methods (RM) in the emergency medicine setting","Melbourne, Australia",1476637176));
-        conferences.add(new Conference(0,8.5,"8th European Neurology Congress","Related Neurology Conferences| Neurology Congress | Neuroscience Events | Meetings on Neurology","amsterdam, Netherlands",1476637176));
-        conferences.add(new Conference(0,10.0,"MSc / PGDip Musculoskeletal Medicine","Orthopaedics","Loughborough, United Kingdom",1476637176));
-        conferences.add(new Conference(0,1.5,"Cycling CME Mountain Bike Western Colorado","We welcome you to join us for the 2016 Cycling CME Mountain Bike Western Colorado.  This is a unique CME conference, which combines education with daily mountain bike rides.","Grand Junction, United States",1476637176));
-        conferences.add(new Conference(0,3.6,"ADAHIC — 2nd Abu Dhabi Ambulatory Healthcare International Congress","Ambulatory Healthcare","Abu Dhabi, United Arab Emirates",1476637176));
-        conferences.add(new Conference(0,2.0,"Targeting Microbiota 2016 — 4th World Congress on Targeting Microbiota","Microbiota 2016: Recent Advances & Perspectives","Paris, France",1476637176));
-        conferences.add(new Conference(0,1.5,"4th International Congress on Translational Medicine","EUSTM-2016 will discuss and showcase latest developments in specific areas of cellular & molecular biology, big data mining & omics sciences, biomarkers & molecular imaging, drug discovery & development","Prague, Czech Republic",1476637176));
-        conferences.add(new Conference(0,3.5,"Primary Care Internal Medicine","Designed for busy clinicians, this comprehensive Harvard Medical School CME program ensures that you are current with the most important clinical changes and innovations impacting primary care, and prepared to integrate them into your practice.","Cambridge, United States",1476637176));
-        conferences.add(new Conference(0,7.5,"Transplant Nurses Association National Conference","On behalf of the 2016 Conference Organising Committee, I would like to extend an invitation to all health professionals with an interest in the field of organ and tissue donation and transplantation to the 2016 TNA National Conference to be held in Adelaide , October 19 – 21 at the Adelaide Convention Centre.","Adelaide, Australia",1476637176));
-        conferences.add(new Conference(0,5.6," RareX — Rare Disease Expo 2016","RareX is a Rare Disease related Conference & Exhibition to be hosted in Cape Town, South Africa from 19 - 22 October 2016 by Rare Diseases SA. Includes presentations, content & discussions relevant for Medical Practitioners, Pharmaceuticals and Industry ","Cape Town, South Africa",1476637176));
-        conferences.add(new Conference(0,5.0,"RareX — RareX Rare Diseases Conference ft. ICORD","The purpose of this conference is to provide a global forum for all stakeholders within the Rare Disease field, both locally and abroad, to participate in open discussion","Cape Town, South Africa",1476637176));
-        conferences.add(new Conference(0,1.5,"Training — Smoking Cessation in Mental Health","Smoking Cessation in Mental Health, and delivering smoke free environments is key to the government ambition for parity of esteem and to reduce the lower life expectancy of people with mental health disorders","London, United Kingdom",1476637176));
+        conferences.add(getBuidConference(0,7.0,"Emergency Medicine Research Course","This course is a 5 month course that will provide students with a thorough understanding of Evidence Based Medicine (EBM) and Research Methods (RM) in the emergency medicine setting","Melbourne, Australia",1476637176));
+        conferences.add(getBuidConference(0,8.5,"8th European Neurology Congress","Related Neurology Conferences| Neurology Congress | Neuroscience Events | Meetings on Neurology","amsterdam, Netherlands",1476637176));
+        conferences.add(getBuidConference(0,10.0,"MSc / PGDip Musculoskeletal Medicine","Orthopaedics","Loughborough, United Kingdom",1476637176));
+        conferences.add(getBuidConference(0,1.5,"Cycling CME Mountain Bike Western Colorado","We welcome you to join us for the 2016 Cycling CME Mountain Bike Western Colorado.  This is a unique CME conference, which combines education with daily mountain bike rides.","Grand Junction, United States",1476637176));
+        conferences.add(getBuidConference(0,3.6,"ADAHIC — 2nd Abu Dhabi Ambulatory Healthcare International Congress","Ambulatory Healthcare","Abu Dhabi, United Arab Emirates",1476637176));
+        conferences.add(getBuidConference(0,2.0,"Targeting Microbiota 2016 — 4th World Congress on Targeting Microbiota","Microbiota 2016: Recent Advances & Perspectives","Paris, France",1476637176));
+        conferences.add(getBuidConference(0,1.5,"4th International Congress on Translational Medicine","EUSTM-2016 will discuss and showcase latest developments in specific areas of cellular & molecular biology, big data mining & omics sciences, biomarkers & molecular imaging, drug discovery & development","Prague, Czech Republic",1476637176));
+        conferences.add(getBuidConference(0,3.5,"Primary Care Internal Medicine","Designed for busy clinicians, this comprehensive Harvard Medical School CME program ensures that you are current with the most important clinical changes and innovations impacting primary care, and prepared to integrate them into your practice.","Cambridge, United States",1476637176));
+        conferences.add(getBuidConference(0,7.5,"Transplant Nurses Association National Conference","On behalf of the 2016 Conference Organising Committee, I would like to extend an invitation to all health professionals with an interest in the field of organ and tissue donation and transplantation to the 2016 TNA National Conference to be held in Adelaide , October 19 – 21 at the Adelaide Convention Centre.","Adelaide, Australia",1476637176));
+        conferences.add(getBuidConference(0,5.6," RareX — Rare Disease Expo 2016","RareX is a Rare Disease related Conference & Exhibition to be hosted in Cape Town, South Africa from 19 - 22 October 2016 by Rare Diseases SA. Includes presentations, content & discussions relevant for Medical Practitioners, Pharmaceuticals and Industry ","Cape Town, South Africa",1476637176));
+        conferences.add(getBuidConference(0,5.0,"RareX — RareX Rare Diseases Conference ft. ICORD","The purpose of this conference is to provide a global forum for all stakeholders within the Rare Disease field, both locally and abroad, to participate in open discussion","Cape Town, South Africa",1476637176));
+        conferences.add(getBuidConference(0,1.5,"Training — Smoking Cessation in Mental Health","Smoking Cessation in Mental Health, and delivering smoke free environments is key to the government ambition for parity of esteem and to reduce the lower life expectancy of people with mental health disorders","London, United Kingdom",1476637176));
 
         return conferences;
 
+    }
+
+    public static Conference getBuidConference(int id, Double importance, String title, String body, String location, long dateMilliseconds){
+        return ConferenceBuilder.conference()
+                .id(id)
+                .importance(importance)
+                .title(title)
+                .body(body)
+                .location(location)
+                .timeInMilliseconds(dateMilliseconds)
+                .build();
     }
 
     /**
@@ -72,7 +79,7 @@ public final class QueryUtils {
         sqlModel.open();
         ArrayList<Object[]> listConferences = sqlModel.getConferenceData();
         for (int i=0; i< listConferences.size(); i++){
-            conferences.add(new Conference(Integer.parseInt(listConferences.get(i)[0].toString()),Double.parseDouble(listConferences.get(i)[1].toString()),listConferences.get(i)[2].toString(),listConferences.get(i)[3].toString(),listConferences.get(i)[4].toString(),Long.parseLong(listConferences.get(i)[5].toString())));
+            conferences.add(getBuidConference(Integer.parseInt(listConferences.get(i)[0].toString()),Double.parseDouble(listConferences.get(i)[1].toString()),listConferences.get(i)[2].toString(),listConferences.get(i)[3].toString(),listConferences.get(i)[4].toString(),Long.parseLong(listConferences.get(i)[5].toString())));
         }
         return conferences;
 
@@ -89,7 +96,7 @@ public final class QueryUtils {
         sqlModel.open();
         ArrayList<Object[]> listConferences = sqlModel.getSuggestedConference();
         for (int i=0; i< listConferences.size(); i++){
-            conferences.add(new Conference(Integer.parseInt(listConferences.get(i)[0].toString()),Double.parseDouble(listConferences.get(i)[1].toString()),listConferences.get(i)[2].toString(),listConferences.get(i)[3].toString(),listConferences.get(i)[4].toString(),Long.parseLong(listConferences.get(i)[5].toString())));
+            conferences.add(getBuidConference(Integer.parseInt(listConferences.get(i)[0].toString()),Double.parseDouble(listConferences.get(i)[1].toString()),listConferences.get(i)[2].toString(),listConferences.get(i)[3].toString(),listConferences.get(i)[4].toString(),Long.parseLong(listConferences.get(i)[5].toString())));
         }
         return conferences;
     }
@@ -105,7 +112,7 @@ public final class QueryUtils {
         sqlModel.open();
         ArrayList<Object[]> listConferences = sqlModel.getInvitedConference(GlobalData.id_user);
         for (int i=0; i< listConferences.size(); i++){
-            conferences.add(new Conference(Integer.parseInt(listConferences.get(i)[0].toString()),Double.parseDouble(listConferences.get(i)[1].toString()),listConferences.get(i)[2].toString(),listConferences.get(i)[3].toString(),listConferences.get(i)[4].toString(),Long.parseLong(listConferences.get(i)[5].toString())));
+            conferences.add(getBuidConference(Integer.parseInt(listConferences.get(i)[0].toString()),Double.parseDouble(listConferences.get(i)[1].toString()),listConferences.get(i)[2].toString(),listConferences.get(i)[3].toString(),listConferences.get(i)[4].toString(),Long.parseLong(listConferences.get(i)[5].toString())));
         }
         return conferences;
     }
@@ -154,7 +161,7 @@ public final class QueryUtils {
                 String place = properties.getString("place");
                 long time = properties.getLong("time");
                 String mapURL = properties.getString("url");
-                conferences.add(new Conference(mag, place, time, mapURL));
+                conferences.add(getBuidConference(mag, place, time, mapURL));
             }
 
 

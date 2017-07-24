@@ -1,4 +1,4 @@
-package com.softwareengineerandroid.davidmata.doctorsconferences;
+package com.softwareengineerandroid.davidmata.controller.doctorsconferences;
 
 
 import android.app.AlertDialog;
@@ -21,10 +21,13 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.softwareengineerandroid.davidmata.global.GlobalData;
+import com.softwareengineerandroid.davidmata.global.QueryUtils;
 import com.softwareengineerandroid.davidmata.global.Timeconversion;
-import com.softwareengineerandroid.davidmata.model.SQLModel;
+import com.softwareengineerandroid.davidmata.model.conference.Conference;
+import com.softwareengineerandroid.davidmata.model.conference.ConferenceAdapter;
+import com.softwareengineerandroid.davidmata.model.conference.ConferenceBuilder;
+import com.softwareengineerandroid.davidmata.model.database.SQLModel;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -126,31 +129,23 @@ public class SuggestedConferencesFragment extends Fragment {
         dlgConfig = new AlertDialog.Builder(parent).create();
         dlgConfig.setView(dlg);
 
-        //DatePicker picker = new DatePicker(this);
-        //picker.setCalendarViewShown(false);
         final Spinner importance = (Spinner)dlg.findViewById(R.id.dialog_newconf_spinnerNumber);
         final EditText title = (EditText) dlg.findViewById(R.id.dialog_newconf_title);
         final EditText body = (EditText) dlg.findViewById(R.id.dialog_newconf_body);
         final EditText location = (EditText) dlg.findViewById(R.id.dialog_newconf_place);
-        final DatePicker date = (DatePicker) dlg.findViewById(R.id.dialog_newconf_date);
-        final TimePicker time = (TimePicker) dlg.findViewById(R.id.dialog_newconf_time);
+        final DatePicker datePicker = (DatePicker) dlg.findViewById(R.id.dialog_newconf_date);
+        final TimePicker timePicker = (TimePicker) dlg.findViewById(R.id.dialog_newconf_time);
         final int idConf = conference.getId();
-        //set the mineDate that the user can select
-        //date.setMinDate(System.currentTimeMillis()- 1000);
 
         title.setText(conference.getTitle());
         body.setText(conference.getBody());
         location.setText(conference.getLocation());
         Date dateObject = new Date(conference.getTimeInMilliseconds()*1000);
-        int yy = Integer.parseInt(formatDateYear(dateObject));
-        int MM = Integer.parseInt(formatDateMonth(dateObject))-1;
-        int DD = Integer.parseInt(formatDateDay(dateObject));
-        int hh = Integer.parseInt(formatDateHour(dateObject));
-        int mm = Integer.parseInt(formatDateMinutes(dateObject));
-
-        date.updateDate(yy,MM,DD);
-        time.setCurrentHour(hh);
-        time.setCurrentMinute(mm);
+        datePicker.updateDate(Integer.parseInt(Timeconversion.formatDateYear(dateObject)),
+                Integer.parseInt(Timeconversion.formatDateMonth(dateObject))-1,
+                Integer.parseInt(Timeconversion.formatDateDay(dateObject)));
+        timePicker.setCurrentHour(Integer.parseInt(Timeconversion.formatDateHour(dateObject)));
+        timePicker.setCurrentMinute(Integer.parseInt(Timeconversion.formatDateMinutes(dateObject)));
 
 
         dlgConfig.setCancelable(false);
@@ -161,34 +156,25 @@ public class SuggestedConferencesFragment extends Fragment {
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         try{
-                            //get the information
-                            String imp = importance.getSelectedItem().toString();
-                            String title_str = title.getText().toString();
-                            String body_str = body.getText().toString();
-                            String location_str = location.getText().toString();
-                            int day = date.getDayOfMonth();
-                            int month = date.getMonth()+1;
-                            int year = date.getYear();
-                            int hh = time.getCurrentHour();
-                            int mm = time.getCurrentMinute();
-                            String date_str = year+"/"+month+"/"+day+" " + hh+":"+mm +":00"; // yyyy/MM/dd HH:mm:ss
-                            long dateMilliseconds = new Timeconversion().timeConversion(date_str);
+                            Conference conference = ConferenceBuilder.conference()
+                                    .id(idConf)
+                                    .importance(Double.parseDouble(importance.getSelectedItem().toString()))
+                                    .title(title.getText().toString())
+                                    .body(body.getText().toString())
+                                    .location(location.getText().toString())
+                                    .timeInMilliseconds(getTimeInMillis(datePicker,timePicker))
+                                    .build();
 
-                            Conference conference = new Conference(idConf,Double.parseDouble(imp),title_str,body_str,location_str,dateMilliseconds);
                             //Add to a database
                             sqlModel = new SQLModel(getContext());
                             sqlModel.open();
                             sqlModel.editConference(conference);
 
-                            Toast.makeText(getActivity()," Conference " + title_str + " added successfully ",Toast.LENGTH_LONG).show();
+                            Toast.makeText(getActivity()," Conference " + title.getText().toString() + " added successfully ",Toast.LENGTH_LONG).show();
 
 
                             //Activity reload
                             reloadActivity();
-
-
-
-
 
                         }catch (Exception e){
                             Toast.makeText(getActivity(),"Error al generar nueva conferencia " + e.getMessage(),Toast.LENGTH_LONG).show();
@@ -213,27 +199,12 @@ public class SuggestedConferencesFragment extends Fragment {
         dlgConfig.show();
     }
 
-    private String formatDateYear (Date dateObject){
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy");
-        return dateFormat.format(dateObject);
-    }
-    private String formatDateMonth (Date dateObject){
-        SimpleDateFormat dateFormat = new SimpleDateFormat("MM");
-        return dateFormat.format(dateObject);
-    }
-    private String formatDateDay (Date dateObject){
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd");
-        return dateFormat.format(dateObject);
-    }
-    private String formatDateHour (Date dateObject){
-        SimpleDateFormat dateFormat = new SimpleDateFormat("HH");
-        return dateFormat.format(dateObject);
-    }
-    private String formatDateMinutes (Date dateObject){
-        SimpleDateFormat dateFormat = new SimpleDateFormat("mm");
-        return dateFormat.format(dateObject);
-    }
 
+    private long getTimeInMillis(DatePicker date, TimePicker timePicker){
+        // yyyy/MM/dd HH:mm:ss
+        return new Timeconversion()
+                .timeConversion(date.getYear()+"/"+date.getMonth()+1+"/"+date.getDayOfMonth()+" " + timePicker.getCurrentHour()+":"+timePicker.getCurrentMinute() +":00");
+    }
 
     private void dlgAreYouShure(String title, final int id){
         AlertDialog alertDialog = new AlertDialog.Builder(getActivity()).create();

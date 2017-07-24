@@ -1,11 +1,10 @@
-package com.softwareengineerandroid.davidmata.doctorsconferences;
+package com.softwareengineerandroid.davidmata.controller.doctorsconferences;
 
 
 import android.Manifest;
 import android.app.AlertDialog;
 import android.content.ContentResolver;
 import android.content.ContentValues;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
@@ -18,17 +17,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.DatePicker;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
-import android.widget.Spinner;
-import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.softwareengineerandroid.davidmata.global.GlobalData;
-import com.softwareengineerandroid.davidmata.global.Timeconversion;
-import com.softwareengineerandroid.davidmata.model.SQLModel;
+import com.softwareengineerandroid.davidmata.global.QueryUtils;
+import com.softwareengineerandroid.davidmata.model.conference.Conference;
+import com.softwareengineerandroid.davidmata.model.conference.ConferenceAdapter;
+import com.softwareengineerandroid.davidmata.model.database.SQLModel;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

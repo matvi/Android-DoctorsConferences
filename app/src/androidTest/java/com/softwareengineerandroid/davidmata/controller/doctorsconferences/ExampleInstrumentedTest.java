@@ -1,4 +1,4 @@
-package com.softwareengineerandroid.davidmata.doctorsconferences;
+package com.softwareengineerandroid.davidmata.controller.doctorsconferences;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.softwareengineerandroid.davidmata.doctorsconferences", appContext.getPackageName());
+        assertEquals("com.softwareengineerandroid.davidmata.controller.doctorsconferences", appContext.getPackageName());
     }
 }

@@ -1,11 +1,10 @@
-package com.softwareengineerandroid.davidmata.doctorsconferences;
+package com.softwareengineerandroid.davidmata.controller.doctorsconferences;
 
-import android.database.sqlite.SQLiteDatabase;
 import android.test.AndroidTestCase;
 import android.util.Log;
 
 import com.softwareengineerandroid.davidmata.global.DummieData;
-import com.softwareengineerandroid.davidmata.model.SQLModel;
+import com.softwareengineerandroid.davidmata.model.database.SQLModel;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package com.softwareengineerandroid.davidmata.doctorsconferences;
+package com.softwareengineerandroid.davidmata.controller.doctorsconferences;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -35,8 +35,9 @@ public class SimpleFragmentPagerAdapter extends FragmentPagerAdapter {
             case 0:return "Conferences";
             case 1:return "Invitation";
             case 2:return "Suggested Conferences";
+            default : return super.getPageTitle(position);
 
         }
-        return super.getPageTitle(position);
+       // return super.getPageTitle(position);
     }
 }

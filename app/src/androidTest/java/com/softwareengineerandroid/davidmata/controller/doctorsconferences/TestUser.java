@@ -1,8 +1,8 @@
-package com.softwareengineerandroid.davidmata.doctorsconferences;
+package com.softwareengineerandroid.davidmata.controller.doctorsconferences;
 
 import android.test.AndroidTestCase;
 
-import com.softwareengineerandroid.davidmata.user.User;
+import com.softwareengineerandroid.davidmata.model.user.User;
 
 /**
  * Created by davidmata on 20/10/2016.

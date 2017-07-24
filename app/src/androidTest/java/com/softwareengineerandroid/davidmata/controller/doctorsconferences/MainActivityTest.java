@@ -1,12 +1,8 @@
-package com.softwareengineerandroid.davidmata.doctorsconferences;
+package com.softwareengineerandroid.davidmata.controller.doctorsconferences;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.support.v7.view.menu.MenuBuilder;
 import android.test.ActivityInstrumentationTestCase2;
 import android.test.suitebuilder.annotation.SmallTest;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.softwareengineerandroid.davidmata.global.GlobalData;

@@ -1,4 +1,4 @@
-package com.softwareengineerandroid.davidmata.doctorsconferences;
+package com.softwareengineerandroid.davidmata.model.conference;
 
 /**
  * Created by davidmata on 15/10/2016.
@@ -19,6 +19,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import android.graphics.drawable.GradientDrawable;
+
+import com.softwareengineerandroid.davidmata.controller.doctorsconferences.R;
 
 
 public class ConferenceAdapter extends ArrayAdapter <Conference> {
